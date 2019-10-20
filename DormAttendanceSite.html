@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script type='text/javascript'>
+    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1bm-kxa0Byg-wsrpNH3Nt1G46WO6Y5Gto8078YlNDMZM/pubhtml';
+
+    function init() {
+        Tabletop.init( { key: publicSpreadsheetUrl,
+            callback: showInfo,
+            simpleSheet: true } )
+    }
+
+    function showInfo(data, tabletop) {
+        alert('Successfully processed!')
+        console.log(data);
+    }
+
+    window.addEventListener('DOMContentLoaded', init)
+
+    function showInfo(data, tabletop) {
+        var tr;
+        for (var i = 0; i < data.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + data[i].Name + "</td>");
+            tr.append("<td>" + data[i].timeentered + "</td>");
+            tr.append("<td>" + data[i].totaltime + "</td>");
+            $('table').append(tr);
+        }
+        console.log(data);
+    }
+</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Who is in the room right now?</title>
+</head>
+<body>
+<h1>Who is in the room right now?</h1>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Time Entered Room</th>
+        <th>Total Time to Date</th>
+    </tr>
+</table>
+</body>
+</html>
